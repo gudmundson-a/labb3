@@ -1,0 +1,124 @@
+package labb3.vy;
+
+import java.awt.*;
+
+import labb3.GlobalaKonstanter;
+import labb3.modell.Gång;
+import labb3.modell.Nivå;
+import labb3.modell.Rum;
+import labb3.modell.Väderstreck;
+import labb3.verktyg.Grafik;
+import labb3.verktyg.Punkt;
+
+
+import javax.swing.*;
+
+// TODO: Ändra nästa rad så att en Målarduk "är-en" JPanel. 
+public class Målarduk extends JPanel {
+
+	private final Nivå enNivå;
+
+	public Målarduk(Nivå enNivå) {
+		// TODO:
+		// Sätt bakgrundsfärgen på this till MARKFÄRG.
+		// TODO:
+		// Anropa metoden setFocusable på this och med argumentet true.
+		// Detta behövs för att lyssnaren i programmet ska reagera.
+		// ========== KLART! ==========
+		this.enNivå = enNivå;
+		setBackground(GlobalaKonstanter.MARKFÄRG);
+		setFocusable(true);
+	}
+
+	// TODO:
+	// Lägg till @Override på metoden nedan.
+	// ========== KLART! ==========
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO:
+		// Lägg till ett anrop till paintComponent i omedelbara
+		// överklassen (JPanel). Skicka med g som argument.
+		super.paintComponent(g);
+
+		// TODO:
+		// Lägg till kod som ritar ut en grafisk vy av enNivå.
+		//  För att underlätta finns hjälpmetoder som ska skrivas klara. Studera
+		//  noga bilderna i labbinstruktionen för att få fram formlerna för
+		//  bas- och pivotpunkternas koordinater. Använd ritmetoderna i klassen
+		//  labb3.verktyg.Grafik. Anropa hjälpmetoderna från paintComponent.
+		// ========== KLART! ==========
+		for (Rum rum: enNivå.getRum()) {
+			ritaRum(g, rum);
+		}
+	}
+
+	private void ritaRum(Graphics g, Rum ettRum) {
+		Punkt övreVänstraHörn = ettRum.getÖvreVänstraHörn();
+		int x = övreVänstraHörn.x();
+		int y = övreVänstraHörn.y();
+		int bredd = ettRum.getBredd();
+		int höjd = ettRum.getHöjd();
+		int väggTjocklek = GlobalaKonstanter.VÄGGTJOCKLEK;
+
+		/*
+		Ritar ut golvet, sen en ram runt rektangeln, har lagts till en variant
+		med tjocka väggar för att man det kanske är ett krav i instruktionen?
+		 */
+		g.setColor(ettRum.getGolvfärg());
+		g.fillRect(x, y, bredd, höjd);
+
+		/*
+		Detta är alltså det smarta sättet att göra det på.
+		*/
+		//g.setColor(Color.BLACK);
+		//g.drawRect(x, y, bredd, höjd);
+
+		/*
+		 Använd metoden drawThickLine för att bestämma en start
+		 och slutpunkt för både x och y koordinaten.
+		 Detta visar vart linjer ska ritas ut.
+
+		 Man hade kunnat göra nya Punkt Objekt för att hålla
+		 reda på vart punkten är istället för att beräkna
+		 varje gång i drawThickLine metoden, detta skulle
+		 framförallt vara fördelaktigt ifall man återanvänder
+		 samma punkter flera gånger. Det kan eventuellt göra koden
+		 lite mer läsbar.
+		*/
+		// Norrväggen (överst)
+		Grafik.drawThickLine(g, new Punkt(x, y), new Punkt(x + bredd, y), väggTjocklek, GlobalaKonstanter.VÄGGFÄRG);
+
+		// Söderväggen (nederst)
+		Grafik.drawThickLine(g, new Punkt(x, y + höjd), new Punkt(x + bredd, y + höjd), väggTjocklek, GlobalaKonstanter.VÄGGFÄRG);
+
+		// Vägg öster (höger)
+		Grafik.drawThickLine(g, new Punkt(x + bredd, y), new Punkt(x + bredd, y + höjd), väggTjocklek, GlobalaKonstanter.VÄGGFÄRG);
+
+		// Vägg väster (vänster)
+		Grafik.drawThickLine(g, new Punkt(x, y), new Punkt(x, y + höjd), väggTjocklek, GlobalaKonstanter.VÄGGFÄRG);
+	}
+
+	private void ritaGångarFrånRum(Graphics g, Rum ettRum) {
+		for (Väderstreck riktning: Väderstreck.values()) {
+			if (riktning.equals(ettRum)) {
+
+			}
+		}
+	}
+
+	private Punkt baspunkt(Rum ettRum, Väderstreck enRiktning) {
+		return null; /* endast här för att Eclipse inte ska klaga */
+	}
+
+	private Punkt pivotpunkt(Rum ettRum, Väderstreck enRiktning) {
+		return null; /* endast här för att Eclipse inte ska klaga */
+	}
+
+	private void ritaGång(Graphics g, Gång enGång) {
+
+	}
+
+	private void ritaMarkörFörVarAnvändarenÄr(Graphics g) {
+
+	}
+}
