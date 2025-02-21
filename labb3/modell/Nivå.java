@@ -24,12 +24,17 @@ public class Nivå extends Observable {
 
 
 		// TODO:
-		//  Kontrollera att startrum finns med i rum. Om inte, kasta
+		// Kontrollera att startrum finns med i rum. Om inte, kasta
 		//  undantag med lämpligt felmeddelande.
+		//  ============== KLART! ============
+		if(!rum.contains(startrum)){
+			throw new RuntimeException("Startrum existerar ej.");
+		}
 
 		// TODO:
 		//  Kontrollera att inga rum överlappar varandra. Om det ändå är
 		//  fallet, kasta undantag med lämpligt felmeddelande.
+
 	}
 
 	// TODO: Skriv en instansmetod som returnerar alla rummen. Denna behöver
@@ -40,8 +45,10 @@ public class Nivå extends Observable {
 		return new ArrayList<>(rum);
 	}
 
-	// TODO: Skriv en instansmetod som returnerar en referens till det rum som
+	// TODO:
+	// Skriv en instansmetod som returnerar en referens till det rum som
 	//  användaren "är i".
+	//  ============== KLART! ============
 
 	public Rum getStartrum() {
 		return startrum;

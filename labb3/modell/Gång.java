@@ -37,7 +37,7 @@ public class Gång {
         return till;
     }
 
-    public void setRiktningInITill(Väderstreck riktningInITill) {
-        this.riktningInITill = riktningInITill;
+    public Väderstreck getRiktningInITill() {
+        return riktningInITill;
     }
 }

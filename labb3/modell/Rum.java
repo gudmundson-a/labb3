@@ -31,9 +31,7 @@ public class Rum {
 	// Skriv "getters", metoder som returnerar tillståndsvariablernas
 	//  värden.
 	// ========== KLART! ==========
-	public Color getGolvfärg() {
-		return golvfärg;
-	}
+	public Color getGolvfärg() { return golvfärg; }
 
 	public int getBredd() {
 		return bredd;
@@ -43,18 +41,10 @@ public class Rum {
 		return höjd;
 	}
 
-	public Punkt getÖvreVänstraHörn() {
+	public Punkt getÖVH() {
 		return övreVänstraHörn;
 	}
 
-	public static void main(String[] args) {
-		Rum rum = new Rum(Color.GREEN, 75, 75, 100, 150);
-
-		System.out.println("Golvfärg: " + rum.getGolvfärg());
-		System.out.println("Bredd: " + rum.getBredd());
-		System.out.println("Höjd: " + rum.getHöjd());
-		System.out.println("Övre vänstra hörn: " + rum.getÖvreVänstraHörn());
-	}
 
 	// TODO:
 	// Skriv instansmetoden
@@ -78,7 +68,7 @@ public class Rum {
 			if(finnsUtgångÅt(väderstreck)){
 				return gångar[väderstreck.getIndex()];
 			} else {
-				throw new IllegalArgumentException("Inga gångar hitåt");
+				throw new IllegalArgumentException("Inga gångar åt det hållet.");
 		}
 	}
 
