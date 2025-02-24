@@ -47,7 +47,7 @@ public class Målarduk extends JPanel {
 
 		HashSet<Object> ritadeGångar = new HashSet<>();
 
-		for (Rum rum: enNivå.getRum()){
+		for (Rum rum: enNivå.getRummen()){
 			ritaRum(g, rum);
 
 			for(Väderstreck riktning : Väderstreck.values()){
@@ -70,9 +70,11 @@ public class Målarduk extends JPanel {
 		//  bas- och pivotpunkternas koordinater. Använd ritmetoderna i klassen
 		//  labb3.verktyg.Grafik. Anropa hjälpmetoderna från paintComponent.
 		// ========== KLART! ==========
-		for (Rum rum: enNivå.getRum()) {
+		for (Rum rum: enNivå.getRummen()) {
 			ritaRum(g, rum);
 		}
+
+		ritaMarkörFörVarAnvändarenÄr(g);
 	}
 
 	private void ritaRum(Graphics g, Rum ettRum) {
@@ -142,10 +144,22 @@ public class Målarduk extends JPanel {
 
 	private Punkt baspunkt(Rum ettRum, Väderstreck enRiktning) {
 		switch(enRiktning){
-			case NORR : return new Punkt(ettRum.getÖVH().x() + ettRum.getBredd()/2, ettRum.getÖVH().y() + HALV_VÄGGTJOCKLEK);
-			case ÖSTER: return new Punkt(ettRum.getÖVH().x() + ettRum.getBredd() - HALV_VÄGGTJOCKLEK, ettRum.getÖVH().y() + ettRum.getHöjd()/2);
-			case SÖDER: return new Punkt(ettRum.getÖVH().x() + ettRum.getBredd()/2, ettRum.getÖVH().y() + ettRum.getHöjd()/2);
-			case VÄSTER: return new Punkt(ettRum.getÖVH().x() + HALV_VÄGGTJOCKLEK, ettRum.getÖVH().y() + ettRum.getHöjd()/2);
+			case NORR :
+				return new Punkt(
+						ettRum.getÖVH().x() + ettRum.getBredd()/2, // mitten av bredd
+						ettRum.getÖVH().y() + VÄGGTJOCKLEK);
+			case ÖSTER:
+				return new Punkt(
+						ettRum.getÖVH().x() + ettRum.getBredd() - VÄGGTJOCKLEK,
+						ettRum.getÖVH().y() + ettRum.getHöjd()/2);
+			case SÖDER:
+				return new Punkt(
+						ettRum.getÖVH().x() + ettRum.getBredd()/2,
+						ettRum.getÖVH().y() + ettRum.getHöjd() - VÄGGTJOCKLEK);
+			case VÄSTER:
+				return new Punkt(
+						ettRum.getÖVH().x() + VÄGGTJOCKLEK,
+						ettRum.getÖVH().y() + ettRum.getHöjd()/2) ;
 			default:
 				return null; //Här vill jag byta ut mot currentPos eller något liknande senare.
 		}
@@ -167,7 +181,13 @@ public class Målarduk extends JPanel {
 		Grafik.drawThickLine(g, pivotpunkt(enGång.getFrån(), enGång.getRiktningUtUrFrån()), pivotpunkt(enGång.getTill(), enGång.getRiktningInITill()), VÄGGTJOCKLEK, GÅNGFÄRG);
 	}
 
-	private void ritaMarkörFörVarAnvändarenÄr(Graphics g) {
 
+	private void ritaMarkörFörVarAnvändarenÄr(Graphics g) {
+		Rum nuvarandeRum = enNivå.getNuvarandeRum();
+		Punkt mitt = new Punkt(
+				nuvarandeRum.getÖVH().x() + nuvarandeRum.getBredd() / 2,
+				nuvarandeRum.getÖVH().y() + nuvarandeRum.getHöjd() / 2
+		);
+		Grafik.fillCircle(g, mitt, GlobalaKonstanter.ANVÄNDARRADIE, GlobalaKonstanter.ANVÄNDARFÄRG);
 	}
 }

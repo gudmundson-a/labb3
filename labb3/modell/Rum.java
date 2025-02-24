@@ -78,7 +78,7 @@ public class Rum {
 	// ========== KLART! ==========
 	public static void kopplaIhop(Rum från, Väderstreck riktningUtUrFrån, Rum till, Väderstreck riktningInITill) {
 		Gång gångFrånTill = new Gång(från, riktningUtUrFrån, till, riktningInITill);
-		Gång gångTillFrån = new Gång(till, riktningInITill, från, riktningInITill);
+		Gång gångTillFrån = new Gång(till, riktningInITill, från, riktningUtUrFrån);
 
 		från.gångar[riktningUtUrFrån.getIndex()] = gångFrånTill;
 		till.gångar[riktningInITill.getIndex()] = gångTillFrån;

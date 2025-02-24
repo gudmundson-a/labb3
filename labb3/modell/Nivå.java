@@ -1,8 +1,9 @@
 package labb3.modell;
 
+import labb3.verktyg.Punkt;
+
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
 
 // TODO:
 // Gör så att klassen Nivå ärver Observable i paketet java.util.
@@ -12,37 +13,58 @@ public class Nivå extends Observable {
 	// Lägg till tillståndsvariabler för att hålla reda på nivåns rum
 	// och i vilket rum som användaren "är".
 	//  =========== KLART! =============
-	private Rum startrum;
-	private ArrayList<Rum> rum;
+	private Rum nuvarandeRum;
+	private ArrayList<Rum> rummen;
 
-	public Nivå(Rum startrum, ArrayList<Rum> rum) {
+	public Nivå(Rum nuvarandeRum, ArrayList<Rum> rummen) {
 		// TODO:
 		// Kopiera in startrum och rum in i tillståndsvariablerna.
 		//  ============== KLART! ============
-		this.startrum = startrum;
-		this.rum = new ArrayList<>(rum);
+		this.nuvarandeRum = nuvarandeRum;
+		this.rummen = rummen;
 
 
 		// TODO:
 		// Kontrollera att startrum finns med i rum. Om inte, kasta
 		//  undantag med lämpligt felmeddelande.
 		//  ============== KLART! ============
-		if(!rum.contains(startrum)){
+		if (!rummen.contains(nuvarandeRum)) {
 			throw new RuntimeException("Startrum existerar ej.");
 		}
 
-		// TODO:
-		//  Kontrollera att inga rum överlappar varandra. Om det ändå är
-		//  fallet, kasta undantag med lämpligt felmeddelande.
 
+		// TODO:
+		// Kontrollera att inga rum överlappar varandra. Om det ändå är
+		//  fallet, kasta undantag med lämpligt felmeddelande.
+		// ========== KLART! ==========
+		for (int i = 0; i < rummen.size(); i++) {
+			for (int j = i + 1; j < rummen.size(); j++) {
+				if (rumÖverlappar(rummen.get(i), rummen.get(j))) {
+					throw new RuntimeException("Rummen överlappar.");
+				}
+			}
+		}
 	}
+
+
+
+	private boolean rumÖverlappar(Rum rum1, Rum rum2) {
+		Punkt p1 = rum1.getÖVH();
+		Punkt p2 = rum2.getÖVH();
+
+		return p1.x() < p2.x() + rum2.getBredd() &&
+				p1.x() + rum1.getBredd() > p2.x() &&
+				p1.y() < p2.y() + rum2.getHöjd() &&
+				p1.y() + rum1.getHöjd() > p2.y();
+	}
+
 
 	// TODO: Skriv en instansmetod som returnerar alla rummen. Denna behöver
 	//  Målarduk för att veta vilka rum som finns på nivån och som ska ritas ut.
 
 	//Getter för alla rum
-	public ArrayList<Rum> getRum() {
-		return new ArrayList<>(rum);
+	public ArrayList<Rum> getRummen() {
+		return rummen;
 	}
 
 	// TODO:
@@ -50,19 +72,29 @@ public class Nivå extends Observable {
 	//  användaren "är i".
 	//  ============== KLART! ============
 
-	public Rum getStartrum() {
-		return startrum;
+	public Rum getNuvarandeRum() {
+		return nuvarandeRum;
 	}
 
-	// TODO: Skriv klar instansmetoden hoppaÅt nedan så att den ändrar det rum
+	// TODO:
+	// Skriv klar instansmetoden hoppaÅt nedan så att den ändrar det rum
 	//  som användaren "är i" om det är möjligt genom att följa en gång från
 	//  rummet och i riktning väderstreck.
 	//  Om väderstreck inte är en riktning i vilken det finns en gång, så ändras
 	//  inte rummet användaren "är i" (och inte heller kastas undantag). (Denna
 	//  metod använder kontrolldelen av programmet för att begära ett hopp till
 	//  angränsande rum efter att användaren tryckt på en tangent.)
+	// ========== KLART! ==========
 
 	public void hoppaÅt(Väderstreck väderstreck) {
-
+		try {
+			Rum nästaRum = nuvarandeRum.gångenÅt(väderstreck).getTill();
+			nuvarandeRum = nästaRum;
+			setChanged();
+			notifyObservers();
+		} catch (IllegalArgumentException e) {
+			System.out.println("Ingen gång åt " + väderstreck);
+		}
 	}
 }
+

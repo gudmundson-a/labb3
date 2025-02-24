@@ -6,6 +6,7 @@ import java.util.Observer;
 
 import labb3.kontroll.Tangentbordslyssnare;
 import labb3.modell.Nivå;
+import labb3.modell.Rum;
 import labb3.vy.Målarduk;
 
 import javax.swing.*;
@@ -44,7 +45,18 @@ public class GUI extends JFrame implements Observer {
 		//  Annars går det också att dra till med en storlek och sen bara
 		//  använda rum som säkert kan visas på målarduken.
 		// ========== KLART! ==========
-		målarduk.setPreferredSize(new java.awt.Dimension(500, 500));
+		målarduk.setPreferredSize(new java.awt.Dimension(600, 400));
+
+//		int width = 0;
+//		int height = 0;
+//
+//		for (Rum nivårum: enNivå.getRummen()){
+//			width += nivårum.getBredd;
+//			height += nivårum.getHöjd;
+//		}
+//
+//		målarduk.setPreferredSize(new java.awt.Dimension(width, height));
+
 
 		// TODO:
 		// Lägg till en KeyListener på målardiken, dvs en instans av
