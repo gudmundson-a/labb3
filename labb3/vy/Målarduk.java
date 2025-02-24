@@ -167,10 +167,22 @@ public class Målarduk extends JPanel {
 
 	private Punkt pivotpunkt(Rum ettRum, Väderstreck enRiktning) { // Definierar pivotpunkter
 		switch(enRiktning){
-			case NORR: return new Punkt(ettRum.getÖVH().x() + ettRum.getBredd()/2, ettRum.getÖVH().y() - VÄGGTJOCKLEK);
-			case ÖSTER: return new Punkt(ettRum.getÖVH().x() + ettRum.getBredd() + VÄGGTJOCKLEK, ettRum.getÖVH().y() + ettRum.getHöjd()/2);
-			case SÖDER: return new Punkt(ettRum.getÖVH().x() + ettRum.getBredd()/2, ettRum.getÖVH().y() + ettRum.getHöjd() + VÄGGTJOCKLEK);
-			case VÄSTER: return new Punkt(ettRum.getÖVH().x() - VÄGGTJOCKLEK, ettRum.getÖVH().y()+ettRum.getHöjd()/2);
+			case NORR:
+				return new Punkt(
+						ettRum.getÖVH().x() + ettRum.getBredd()/2,
+						ettRum.getÖVH().y() - VÄGGTJOCKLEK);
+			case ÖSTER:
+				return new Punkt(
+						ettRum.getÖVH().x() + ettRum.getBredd() + VÄGGTJOCKLEK,
+						ettRum.getÖVH().y() + ettRum.getHöjd()/2);
+			case SÖDER:
+				return new Punkt(
+						ettRum.getÖVH().x() + ettRum.getBredd()/2,
+						ettRum.getÖVH().y() + ettRum.getHöjd() + VÄGGTJOCKLEK);
+			case VÄSTER:
+				return new Punkt(
+						ettRum.getÖVH().x() - VÄGGTJOCKLEK,
+						ettRum.getÖVH().y()+ettRum.getHöjd()/2);
 			default:
 				return null; //Också currentPos eller nå senare. Kanske nivå.getRum();?
 		}
