@@ -43,6 +43,23 @@ public class Huvudprogram {
 		Rum.kopplaIhop(rum.get(3), SÖDER, rum.get(6), NORR);
 		Rum.kopplaIhop(rum.get(7), ÖSTER, rum.get(6), VÄSTER);
 
+		// ================================================= //
+//		rum.add(new Rum(Color.LIGHT_GRAY, 100, 100, 50, 50));
+//		rum.add(new Rum(Color.DARK_GRAY, 75, 100, 200, 50));
+//		rum.add(new Rum(Color.BLUE, 50, 75, 350, 75));
+//		rum.add(new Rum(Color.RED, 125, 75, 150, 200));
+//		rum.add(new Rum(Color.GREEN, 100, 125, 300, 250));
+//		rum.add(new Rum(Color.MAGENTA, 150, 100, 450, 150));
+//
+//		Rum.kopplaIhop(rum.get(0), ÖSTER, rum.get(1), VÄSTER);
+//		Rum.kopplaIhop(rum.get(1), SÖDER, rum.get(3), NORR);
+//		Rum.kopplaIhop(rum.get(1), ÖSTER, rum.get(2), VÄSTER);
+//		Rum.kopplaIhop(rum.get(2), SÖDER, rum.get(4), NORR);
+//		Rum.kopplaIhop(rum.get(4), VÄSTER, rum.get(3), ÖSTER);
+//		Rum.kopplaIhop(rum.get(4), ÖSTER, rum.get(5), VÄSTER);
+//		Rum.kopplaIhop(rum.get(0), SÖDER, rum.get(3), VÄSTER);
+
+		// ================================================= //
 		// TODO:
 		// Skapa en nivå med argumenten rum.get(3) och rum.
 		// ========== KLART! ==========

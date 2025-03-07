@@ -11,7 +11,7 @@ public class Rum {
 	private Color golvfärg;
 	private int bredd;
 	private int höjd;
-	private Punkt övreVänstraHörn;
+	private Punkt punkt;
 	private Gång[] gångar = new Gång[ANTAL_VÄDERSTRECK];
 
 
@@ -24,7 +24,7 @@ public class Rum {
 		this.golvfärg = golvfärg;
 		this.bredd = bredd;
 		this.höjd = höjd;
-		this.övreVänstraHörn = new Punkt(övX, övY);
+		this.punkt = new Punkt(övX, övY);
 	}
 
 	// TODO:
@@ -41,8 +41,8 @@ public class Rum {
 		return höjd;
 	}
 
-	public Punkt getÖVH() {
-		return övreVänstraHörn;
+	public Punkt getPunkt() {
+		return punkt;
 	}
 
 

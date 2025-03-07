@@ -45,7 +45,7 @@ public class GUI extends JFrame implements Observer {
 		//  Annars går det också att dra till med en storlek och sen bara
 		//  använda rum som säkert kan visas på målarduken.
 		// ========== KLART! ==========
-		målarduk.setPreferredSize(new java.awt.Dimension(600, 400));
+		målarduk.setPreferredSize(new java.awt.Dimension(620, 400));
 
 //		int width = 0;
 //		int height = 0;

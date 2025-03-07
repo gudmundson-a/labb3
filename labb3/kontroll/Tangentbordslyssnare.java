@@ -48,7 +48,7 @@ public class Tangentbordslyssnare implements KeyListener {
         }
 
         if (riktning != null) {
-            System.out.println("Index för: " + riktning + ":" + riktning.getIndex());
+            System.out.println("Index för: " + riktning + " = " + riktning.getIndex());
             enNivå.hoppaÅt(riktning);
         }
 

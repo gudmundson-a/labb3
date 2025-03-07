@@ -14,7 +14,7 @@ abstract public class GlobalaKonstanter {
 	public static final Color VÄGGFÄRG = Color.BLACK;
 
 	// Färgen på de gångar som förbinder rum:
-	public static final Color GÅNGFÄRG = new Color(45, 117, 208);
+	public static final Color GÅNGFÄRG = new Color(37, 143, 217);
 
 	// Färgen på den "mark" som det inte finns rum eller gångar på:
 	public static final Color MARKFÄRG = Color.WHITE;
